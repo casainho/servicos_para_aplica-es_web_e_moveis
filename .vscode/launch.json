@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "command": "PORT=3001 npm start",
+        "name": "Debug",
+        "request": "launch",
+        "type": "node-terminal"
+      },
+      {
+        "name": "Attach to Nodemon",
+        "type": "node",
+        "request": "attach",
+        "port": 9229, // Adjust if Nodemon uses a different port
+        "address": "localhost", // Adjust if using a different host
+        "restart": true,
+        "sourceMaps": true, // Allow source maps for easier debugging
+      },
+    ]
+}
