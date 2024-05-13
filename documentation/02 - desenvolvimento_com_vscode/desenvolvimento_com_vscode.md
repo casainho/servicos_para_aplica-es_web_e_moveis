@@ -1,3 +1,5 @@
+Desenvolvimento com o VSCode.
+
 - [Express](#express)
 - [Base de dados](#base-de-dados)
 
@@ -44,10 +46,10 @@ Setup inicial projecto:
 
 Para iniciar o desenvolvimento com debug:
 
-- colocar breakpoints onde for necessário para debug
+- colocar breakpoints onde for necessário para debug<br>
 <img src="02.png" width="511" height="319"><br>
 - abrir a aplicação em: http://localhost:3001<br>
-<img src="01.png" width="262" height="231">
+<img src="01.png" width="262" height="231"><br>
 
 # Base de dados
 
