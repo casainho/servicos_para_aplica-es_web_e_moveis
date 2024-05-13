@@ -1,0 +1,5 @@
+ * [W3Schools](https://www.w3schools.com/)
+ * [Express](https://expressjs.com/)
+ * [MySQL](https://www.npmjs.com/package/mysql2)
+ * [Sequelize](https://sequelize.org/)
+ * [Swagger](https://swagger.io/docs/)
