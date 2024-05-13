@@ -9,8 +9,6 @@ Setup inicial projecto:
 
 - npx express-generator
     
-- npm install nodemon
-    
 - npm install
     
 - no package.json, substituir
