@@ -5,8 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var database = require('./project_modules/database/database');
 
 var app = express();
 
@@ -21,7 +19,27 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+//////////////////////////////////////////////////
+// custom routes
+
+var routesRootDirPath = './routes/'
+var routesName = [
+  'route_users'
+]
+
+let routesImported = []
+for (const routeName of routesName) {
+  routesImported.push(require(routesRootDirPath + routeName))
+}
+
+// for (let i = 0; i < routesImported.length; i++) {
+//   app.use('/' + routesRootDirPath + routesName[i], routesImported[i]);
+// }
+
+var ar = require('./routes/route_users');
+app.use('/users', ar);
+//////////////////////////////////////////////////
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

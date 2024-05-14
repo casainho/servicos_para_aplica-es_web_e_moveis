@@ -11,10 +11,13 @@ Sequelize.sync()
 
 async function list_users() {
   try {
-    let users_list = await Users.findAll();
-    console.log('\nlist_users() ok:', users_list);
+    let users = await Users.findAll();
+    let users_json = users.map(user => user.toJSON())
+    console.log('\nlist_users() ok - users_json:', users_json);
+    return users_json;
   } catch (error) {
-    console.log('\nlist_users() ERROR:', error)
+    console.error('\nlist_users() ERROR:', error)
+    return null;
   }
 }
 

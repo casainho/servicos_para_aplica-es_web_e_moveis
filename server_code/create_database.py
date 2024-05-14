@@ -14,7 +14,7 @@ table_name_1 = "users"
 columns_table_1 = """
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   date_created NOW NOT NULL,
-  date_last_change NOW NOT NULL,
+    NOW NOT NULL,
   user_id INTEGER NOT NULL UNIQUE,
   user_password TEXT NOT NULL,
   user_full_name TEXT NOT NULL
