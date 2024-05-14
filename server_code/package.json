@@ -11,9 +11,11 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "js-yaml": "^4.1.0",
     "morgan": "~1.9.1",
     "node-sqlite": "latest",
     "nodemon": "^3.1.0",
-    "sequelize": "latest"
+    "sequelize": "latest",
+    "swagger-ui-express": "^5.0.0"
   }
 }

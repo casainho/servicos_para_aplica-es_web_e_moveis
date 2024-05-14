@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const bodyParser = require('body-parser');
 
 const database = require('../project_modules/database/database');
 
@@ -44,7 +43,7 @@ router.post('/delete', function(req, res, next) {
         // 404: not found
         res.status(404).send([
           {
-            "error": "User not found",
+            "error": "User not found"
           }
         ]);
       }

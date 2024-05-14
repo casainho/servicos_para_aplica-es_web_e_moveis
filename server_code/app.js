@@ -38,6 +38,13 @@ for (let i = 0; i < routesImported.length; i++) {
 }
 //////////////////////////////////////////////////
 
+const swaggerUI = require('swagger-ui-express');
+var fs = require('fs');
+var jsyaml = require('js-yaml');
+var spec = fs.readFileSync('./swagger.yaml', 'utf8');
+swaggerDocument = jsyaml.load(spec);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
