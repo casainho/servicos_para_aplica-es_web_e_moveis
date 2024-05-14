@@ -25,7 +25,7 @@ app.use('/', indexRouter);
 
 var routesRootDirPath = './routes/'
 var routesName = [
-  'route_users'
+  'users'
 ]
 
 let routesImported = []
@@ -33,12 +33,9 @@ for (const routeName of routesName) {
   routesImported.push(require(routesRootDirPath + routeName))
 }
 
-// for (let i = 0; i < routesImported.length; i++) {
-//   app.use('/' + routesRootDirPath + routesName[i], routesImported[i]);
-// }
-
-var ar = require('./routes/route_users');
-app.use('/users', ar);
+for (let i = 0; i < routesImported.length; i++) {
+  app.use('/' + routesName[i], routesImported[i]);
+}
 //////////////////////////////////////////////////
 
 // catch 404 and forward to error handler

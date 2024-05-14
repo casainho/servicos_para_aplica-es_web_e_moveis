@@ -1,3 +1,4 @@
+const { Model } = require('sequelize');
 const Sequelize = require('./sequelize');
 const Users = require('./sequelize_model-users');
 
@@ -13,7 +14,7 @@ async function list_users() {
   try {
     let users = await Users.findAll();
     let users_json = users.map(user => user.toJSON())
-    console.log('\nlist_users() ok - users_json:', users_json);
+    console.log('\nlist_users() ok\n');
     return users_json;
   } catch (error) {
     console.error('\nlist_users() ERROR:', error)
@@ -44,25 +45,9 @@ async function create_user(user_id, user_password, user_full_name) {
     let user = null;
     user = users_list.find(user => user.user_id === user_id);
 
-    if ((typeof user) == (typeof Users)) {
+    if (user instanceof Users) {
       console.log('\ncreate_user(): user already exists\n');
-      return;
-    }
-  }
-
-  if (user_id == null) {
-    // find last user_id
-    try {
-      const users_list = await Users.findAll();
-
-      if (users_list.length > 0) {
-        let last_user = users_list[users_list.length - 1];
-        user_id = last_user.user_id + 1;
-      }
-
-    } catch (error) {
-      console.log('\nProbably, no users exist\n')
-      user_id = 0
+      return -1;
     }
   }
 
@@ -79,8 +64,10 @@ async function create_user(user_id, user_password, user_full_name) {
   if (new_user) {
     await new_user.save();
     console.log('\nNew user created\n');
+    return 0;
   } else {
     console.log('\nUser not created\n');
+    return -2;
   }
 }
 
@@ -89,11 +76,13 @@ async function delete_user(user_id) {
   const users_list = await Users.findAll();
   let user = null;
   user = users_list.find(user => user.user_id === user_id);
-  if (user) {
+  if (user instanceof Users) {
     await user.destroy(); // Remove this entry from the database
     console.log('\ndelete_user() ok');
+    return 0;
   } else {
     console.log('\ndelete_user() NOK user_id not found', user_id);
+    return -1;
   }
 }
 
