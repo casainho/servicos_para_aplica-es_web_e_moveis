@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   database.list_users()
     .then((users_json) => {
       if (users_json.length) {
+        // console.log('\n/users ok');
         res.status(200).send(users_json);
       } else {
         res.status(200).send([]);
@@ -19,7 +20,7 @@ router.post('/create', function(req, res, next) {
   database.create_user(req.body.user_id, req.body.user_password, req.body.user_full_name)
     .then((return_value) => {
       if (return_value >= 0) {
-        console.log('\n/users/add ok');
+        // console.log('\n/users/add ok');
         res.status(200).send([]);
       } else {
         // 409: conflict
@@ -37,7 +38,7 @@ router.post('/delete', function(req, res, next) {
   database.delete_user(req.body.user_id)
     .then((return_value) => {
       if (return_value >= 0) {
-        console.log('\n/users/delete ok');
+        // console.log('\n/users/delete ok');
         res.status(200).send([]);
       } else {
         // 404: not found

@@ -3,20 +3,20 @@ const Users = require('./sequelize_model-users');
 
 Sequelize.sync()
   .then(() => {
-    console.log('\nSequelize.sync(): ok\n');
+    console.log('\nDatabase: Sequelize.sync(): ok');
   })
   .catch(error => {
-    console.error('\nSequelize.sync() ERROR', error);
+    console.error('\nDatabase: Sequelize.sync() ERROR', error);
   })
 
 async function list_users() {
   try {
     let users = await Users.findAll();
     let users_json = users.map(user => user.toJSON())
-    console.log('\nlist_users() ok\n');
+    console.log('\nDatabase: list_users() ok');
     return users_json;
   } catch (error) {
-    console.error('\nlist_users() ERROR:', error)
+    console.error('\nDatabase: list_users() ERROR:', error)
     return null;
   }
 }
@@ -34,7 +34,7 @@ async function create_user(user_id, user_password, user_full_name) {
       }
 
     } catch (error) {
-      console.log('\nProbably, no users exist\n')
+      console.log('\nDatabase: probably there are no users registered')
       user_id = 0
     }
   } else {
@@ -45,7 +45,7 @@ async function create_user(user_id, user_password, user_full_name) {
     user = users_list.find(user => user.user_id === user_id);
 
     if (user instanceof Users) {
-      console.log('\ncreate_user(): user already exists\n');
+      console.log('\nDatabase: user already exists - ', user_id);
       return -1;
     }
   }
@@ -62,10 +62,10 @@ async function create_user(user_id, user_password, user_full_name) {
 
   if (new_user) {
     await new_user.save();
-    console.log('\nNew user created\n');
+    console.log('\nDatabase: new user created - ', user_id);
     return 0;
   } else {
-    console.log('\nUser not created\n');
+    console.log('\nDatabase: user not created - ', user_id);
     return -2;
   }
 }
@@ -77,10 +77,10 @@ async function delete_user(user_id) {
   user = users_list.find(user => user.user_id === user_id);
   if (user instanceof Users) {
     await user.destroy(); // Remove this entry from the database
-    console.log('\ndelete_user() ok');
+    console.log('\nDatabase: delete_user() ok - ', user_id);
     return 0;
   } else {
-    console.log('\ndelete_user() NOK user_id not found', user_id);
+    console.log('\nDatabase: delete_user() NOK user_id not found - ', user_id);
     return -1;
   }
 }
