@@ -1,22 +1,30 @@
-const sequelize = require('./sequelize');
+const Sequelize = require('./sequelize');
+const { DataTypes } = require('sequelize');
 
-function users_model() {
-  let users = sequelize.define('users', {
-    user_id: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    user_password: {
-      type: DataTypes.STRING,
-      allowNull : false
-    },
-    user_full_name: {
-      type: DataTypes.STRING,
-      allowNull : false
-    },
-  });
+const users = Sequelize.define('users', {
+  date_created: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  date_last_change: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  user_password: {
+    type: DataTypes.TEXT,
+    allowNull : false
+  },
+  user_full_name: {
+    type: DataTypes.TEXT,
+    allowNull : false
+  },
+},
+{
+  timestamps: false // Disable automatic timestamp management
+});
 
-  return users
-}
-
-module.exports = users_model;
+module.exports = users;
