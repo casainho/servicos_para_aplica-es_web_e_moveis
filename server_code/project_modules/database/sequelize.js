@@ -12,10 +12,10 @@ var connection = false;
 async function db_connection() {
   try {
     await sequelize.authenticate();
-    console.log('\nsequelize.authenticate(): ok');
+    console.log('\nSequelize.authenticate() ok');
     connection = true;
   } catch (error) {
-    console.error('\nsequelize.authenticate() ERROR:', error);
+    console.error('\nSequelize.authenticate() ERROR - ', error);
   }
 }
 db_connection();

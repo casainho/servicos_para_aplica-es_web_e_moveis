@@ -3,11 +3,23 @@ const Users = require('./sequelize_model-users');
 
 Sequelize.sync()
   .then(() => {
-    console.log('\nDatabase: Sequelize.sync(): ok');
+    console.log('\nDatabase: Sequelize.sync() ok');
+    users_list = get_users();
   })
   .catch(error => {
     console.error('\nDatabase: Sequelize.sync() ERROR', error);
   })
+
+async function get_users() {
+  try {
+    let users_list = await Users.findAll();
+    console.log('\nDatabase: get_users() ok');
+    return users_list;
+  } catch (error) {
+    console.error('\nDatabase: get_users() ERROR:', error)
+    return null;
+  }
+}
 
 async function list_users() {
   try {
@@ -85,6 +97,4 @@ async function delete_user(user_id) {
   }
 }
 
-module.exports.list_users = list_users;
-module.exports.create_user = create_user;
-module.exports.delete_user = delete_user;
+module.exports = {list_users, create_user, delete_user, get_users};

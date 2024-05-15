@@ -3,8 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
+var passport_ = require('./project_modules/authentication');
 
 var app = express();
 
@@ -20,6 +20,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('express-session')({
+  secret: 'caboverde-14.05.2024',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport_.initialize());
+app.use(passport_.session());
+
 app.use('/', indexRouter);
 
 //////////////////////////////////////////////////
@@ -27,7 +35,8 @@ app.use('/', indexRouter);
 
 var routesRootDirPath = './routes/'
 var routesName = [
-  'users'
+  'users',
+  'login'
 ]
 
 let routesImported = []

@@ -16,6 +16,9 @@
     "node-sqlite": "latest",
     "nodemon": "^3.1.0",
     "sequelize": "latest",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "passport": "latest",
+    "passport-local": "latest",
+    "express-session": "latest"
   }
 }
